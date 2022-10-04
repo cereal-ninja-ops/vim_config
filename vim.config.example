@@ -1,0 +1,166 @@
+set number
+
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
+
+" Enable type file detection. Vim will be able to try to detect the type of file in use.
+filetype on
+
+" Enable plugins and load plugin for the detected file type.
+filetype plugin on
+
+" Load an indent file for the detected file type.
+filetype indent on
+
+" Turn syntax highlighting on.
+syntax on
+
+" Set shift width to 4 spaces.
+set shiftwidth=4
+
+" Set tab width to 4 columns.
+set tabstop=4
+
+" Use space characters instead of tabs.
+set expandtab
+
+" While searching though a file incrementally highlight matching characters as you type.
+set incsearch
+
+" Show partial command you type in the last line of the screen.
+set showcmd
+
+" Show the mode you are on the last line.
+set showmode
+
+" Show matching words during a search.
+set showmatch
+
+" Use highlighting when doing a search.
+set hlsearch
+
+" Set the commands to save in history default number is 20.
+set history=1000
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+" Always split below
+set splitbelow
+
+" Enable mouse drag on window splits
+set mouse=a
+
+" Set terminal size
+set termwinsize=12x0
+
+
+"Vundle Plugin
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Switch Autocompletion on/off
+let g:AutoPairsShortcutToggle = '<C-P>'
+
+" Download plug-ins to the ~/.vim/plugged/ directory
+call vundle#begin('~/.vim/plugged')
+
+" Let Vundle manage Vundle
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'Badacadabra/vim-archery'
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'wadackel/vim-dogrun'
+
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'preservim/nerdtree'
+
+Plugin 'preservim/tagbar'
+Plugin 'dyng/ctrlsf.vim'
+
+" let Vundle manage Vundle, required
+Bundle 'gmarik/vundle'
+Bundle 'zah/nim.vim'
+Bundle 'scrooloose/syntastic'
+
+call vundle#end()
+filetype plugin indent on
+
+" Set color scheme
+colorscheme archery
+
+" NERDTree Settings
+let NERDTreeShowBookmarks = 1   " Show the bookmarks table
+let NERDTreeShowHidden = 1      " Show hidden files
+let NERDTreeShowLineNumbers = 0 " Hide line numbers
+let NERDTreeMinimalMenu = 1     " Use the minimal menu (m)
+let NERDTreeWinPos = 'left'      " Panel opens on the left side
+let NERDTreeWinSize = 31        " Set panel width to 31 columns
+
+nmap <F2> :NERDTreeToggle<CR>
+
+
+" ctag settings
+
+" Focus the panel when opening it
+let g:tagbar_autofocus = 1
+
+" Highlight the active tag
+let g:tagbar_autoshowtag = 1
+
+" Make panel vertical and place on the right
+let g:tagbar_position = 'botright vertical'
+
+" Mapping to open and close the panel
+nmap <F8> :TagbarToggle<CR>
+
+
+" ctrl tool - file searching
+" Use the ack tool as the backend
+let g:ctrlsf_backend = 'ack'
+" Auto close the results panel when opening a file
+let g:ctrlsf_auto_close = { "normal":0, "compact":0 }
+" Immediately switch focus to the search window
+let g:ctrlsf_auto_focus = { "at":"start" }
+" Don't open the preview window automatically
+let g:ctrlsf_auto_preview = 0
+" Use the smart case sensitivity search scheme
+let g:ctrlsf_case_sensitive = 'smart'
+" Normal mode, not compact mode
+let g:ctrlsf_default_view = 'normal'
+" Use absoulte search by default
+" let g:ctrlsf_regex_pattern = 0;
+" Position of the search window
+let g:ctrlsf_position = 'right'
+" Width or height of search window
+let g:ctrlsf_winsize = '46'
+" Search from the current working directory
+let g:ctrlsf_default_root = 'cwd'
+
+
+" (Ctrl+F) Open search prompt (Normal Mode)
+nmap <C-F>f <Plug>CtrlSFPrompt
+" (Ctrl-F + f) Open search prompt with selection (Visual Mode)
+xmap <C-F>f <Plug>CtrlSFVwordPath
+" (Ctrl-F + F) Perform search with selection (Visual Mode)
+xmap <C-F>F <Plug>CtrlSFVwordExec
+" (Ctrl-F + n) Open search prompt with current word (Normal Mode)
+nmap <C-F>n <Plug>CtrlSFCwordPath
+" (Ctrl-F + o )Open CtrlSF window (Normal Mode)
+nnoremap <C-F>o :CtrlSFOpen<CR>
+" (Ctrl-F + t) Toggle CtrlSF window (Normal Mode)
+nnoremap <C-F>t :CtrlSFToggle<CR>
+" (Ctrl-F + t) Toggle CtrlSF window (Insert Mode)
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
